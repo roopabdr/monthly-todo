@@ -1,11 +1,11 @@
 import React from 'react';
 import './ItemList.css';
 
-const ItemList = () => {
+const ItemList = (props) => {
     return (
         <div>
-            <input type="text" className='input' placeholder='Add Item to List..' />
-            <button className='button'>Add</button>
+            <input type="text" className='input' placeholder='Add Item to List..' onChange={ props.change.bind(this) } />
+            <button className='button' onClick={ props.add }>Add</button>
         </div>
     );
 }
