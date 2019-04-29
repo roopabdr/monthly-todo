@@ -1,24 +1,35 @@
 import React, {Component} from 'react';
-import ItemList from './ItemList/ItemList';
+import ItemInput from './ItemInput/ItemInput';
 import './App.css';
+import ItemList from './ItemList/ItemList';
 
 class App extends Component {
   state = {
-    item: ''
+    itemName: '',
+    items: []
   };
 
-  onAddClick = () => {
-    console.log(this.state.item);
+  onAddClick = () => {        
+    let listOfItems = [...this.state.items];
+    listOfItems.push(this.state.itemName);
+    this.setState({items: listOfItems});
   }
 
-  onInputChange = (event) => {
-    this.setState({ item: event.target.value });
+  onInputChange = (itemName) => {    
+    this.setState({itemName: itemName});
   }
 
   render() {
     return (
       <div className="App">
-        <ItemList add={ this.onAddClick } change={ this.onInputChange }/>
+        <ItemInput add={ this.onAddClick } change={ this.onInputChange }/>
+        <div className='item-wrapper'>
+        {
+          this.state.items.map(item => {
+            return <ItemList itemProp={ item }/>
+          })
+        }
+        </div>
       </div>
     );
   }
