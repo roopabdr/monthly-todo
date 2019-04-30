@@ -25,8 +25,8 @@ class App extends Component {
         <ItemInput add={ this.onAddClick } change={ this.onInputChange }/>
         <div className='item-wrapper'>
         {
-          this.state.items.map(item => {
-            return <ItemList itemProp={ item }/>
+          this.state.items.map((item, index) => {
+            return <ItemList itemProp={ item } key= { index }/>
           })
         }
         </div>

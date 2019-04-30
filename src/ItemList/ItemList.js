@@ -4,7 +4,10 @@ import './ItemList.css';
 const ItemList = (props) => {
     return (
         <div className='item-style'>
-            <span>{ props.itemProp }</span>
+            <div>
+                <span>{ props.itemProp }</span>
+                <i class="fas fa-trash"></i>
+            </div>
         </div>
     );
 }
