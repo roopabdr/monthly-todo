@@ -5,8 +5,8 @@ const ItemList = (props) => {
     return (
         <div className='item-style'>
             <div>
-                <p>{ props.itemProp }</p>
-                <i class="fas fa-trash"></i>
+                <div onClick={ () => props.itemlistClick('Item Line') }>{ props.itemProp }</div>
+                <i onClick={ () => props.itemlistClick('Trash Icon') } className="fas fa-trash"></i>
             </div>
         </div>
     );

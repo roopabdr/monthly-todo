@@ -19,6 +19,10 @@ class App extends Component {
     this.setState({itemName: itemName});
   }
 
+  onItemListClick = (element) => {
+    console.log(element, 'clicked');
+  }
+
   render() {
     return (
       <div className="App">
@@ -26,7 +30,7 @@ class App extends Component {
         <div className='item-wrapper'>
         {
           this.state.items.map((item, index) => {
-            return <ItemList itemProp={ item } key= { index }/>
+            return <ItemList itemProp={ item } key= { `item${index}` } itemlistClick={ this.onItemListClick }/>
           })
         }
         </div>

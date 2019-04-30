@@ -12,11 +12,13 @@
 
 .item-style div {
     display: flex;
-    justify-content: space-between;    
+    justify-content: space-between;
+    width: 100%;
 }
 
-.item-style div p {
+.item-style div div {
     margin: auto;
+    cursor: pointer;    
 }
 
 .fa-trash {
