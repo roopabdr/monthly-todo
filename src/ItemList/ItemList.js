@@ -5,7 +5,7 @@ const ItemList = (props) => {
     return (
         <div className='item-style'>
             <div>
-                <span>{ props.itemProp }</span>
+                <p>{ props.itemProp }</p>
                 <i class="fas fa-trash"></i>
             </div>
         </div>
