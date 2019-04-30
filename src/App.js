@@ -21,6 +21,12 @@ class App extends Component {
 
   onItemListClick = (element) => {
     console.log(element, 'clicked');
+    if ( element.includes('trash') ) {
+      let listOfItems = [...this.state.items];
+      let index = element[element.length-1];
+      listOfItems.splice(index, 1);
+      this.setState({ items: listOfItems });
+    }
   }
 
   render() {
@@ -30,7 +36,7 @@ class App extends Component {
         <div className='item-wrapper'>
         {
           this.state.items.map((item, index) => {
-            return <ItemList itemProp={ item } key= { `item${index}` } itemlistClick={ this.onItemListClick }/>
+            return <ItemList itemProp={ item } key={ `item${index}` } id={ `item${index}` } itemlistClick={ this.onItemListClick }/>
           })
         }
         </div>
