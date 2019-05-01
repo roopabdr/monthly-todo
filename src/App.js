@@ -6,12 +6,12 @@ import ItemList from './ItemList/ItemList';
 class App extends Component {
   state = {
     itemName: '',
-    items: []
+    items: [],
   };
 
   onAddClick = () => {        
     let listOfItems = [...this.state.items];
-    listOfItems.push(this.state.itemName);
+    listOfItems.push({ name: this.state.itemName, strikeThrough: false });
     this.setState({items: listOfItems});
   }
 
@@ -19,13 +19,18 @@ class App extends Component {
     this.setState({itemName: itemName});
   }
 
-  onItemListClick = (element) => {
-    console.log(element, 'clicked');
+  onItemListClick = (element, id) => {
+    console.log(element, 'clicked', id);
     if ( element.includes('trash') ) {
       let listOfItems = [...this.state.items];
-      let index = element[element.length-1];
+      let index = id;
       listOfItems.splice(index, 1);
       this.setState({ items: listOfItems });
+    } else {
+        let listOfItems = [...this.state.items];
+        let index = id;
+        listOfItems[index].strikeThrough = !listOfItems[index].strikeThrough;
+        this.setState({ items: listOfItems });
     }
   }
 
@@ -36,7 +41,13 @@ class App extends Component {
         <div className='item-wrapper'>
         {
           this.state.items.map((item, index) => {
-            return <ItemList itemProp={ item } key={ `item${index}` } id={ `item${index}` } itemlistClick={ this.onItemListClick }/>
+            return <ItemList 
+              itemProp={ item.name } 
+              key={ `item${index}` } 
+              id={ `${index}` } 
+              itemlistClick={ this.onItemListClick } 
+              strike={ item.strikeThrough }
+              />
           })
         }
         </div>
