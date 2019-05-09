@@ -9,13 +9,20 @@ class App extends Component {
     items: [],
   };
 
-  onAddClick = () => {        
+  onAddClick = () => {
     let listOfItems = [...this.state.items];
     listOfItems.push({ name: this.state.itemName, strikeThrough: false });
     this.setState({items: listOfItems});
   }
 
-  onInputChange = (itemName) => {    
+  onItemListKeyPress = () => {
+    console.log('onItemListKeyPress');
+    let listOfItems = [...this.state.items];
+    listOfItems.push({ name: this.state.itemName, strikeThrough: false });
+    this.setState({items: listOfItems});
+  }
+
+  onInputChange = (itemName) => {
     this.setState({itemName: itemName});
   }
 
@@ -37,7 +44,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <ItemInput add={ this.onAddClick } change={ this.onInputChange }/>
+        <ItemInput 
+          add={ this.onAddClick } 
+          change={ this.onInputChange }
+          keyPress={ this.onItemListKeyPress }
+          />
         <div className='item-wrapper'>
         {
           this.state.items.map((item, index) => {
@@ -45,7 +56,7 @@ class App extends Component {
               itemProp={ item.name } 
               key={ `item${index}` } 
               id={ `${index}` } 
-              itemlistClick={ this.onItemListClick } 
+              itemlistClick={ this.onItemListClick }               
               strike={ item.strikeThrough }
               />
           })
